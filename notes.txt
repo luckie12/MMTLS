@@ -1,0 +1,29 @@
+when you change the servers list, you also change a separate list that structured for efficient client responses.  all operations on the 2nd list "shadow" operations of the primary
+shadow / follow
+so your servers list key is literally guid + "," + urls your client list key is just guid and the value is urls and all the other data - you would have several entries in that client list with the same guid and different value data.  one entry in client list = one server in server list
+so Register adds the server entry to the server list, but also adds an entry to the client list.  For remove, you have to iterate the client list by guid for matching urls in the value and remove that one.  Same for update.
+I don't see anything that culls the server list of stale entries yet
+
+
+
+75 seconds since regDate or lastUpdateDate (whichever is later) = stale
+so if both are 75 seconds old...cull it
+that needs to be on a 1 second timer, maybe a separate thread that's started by Register and self-stops if the server list is empty?
+
+
+
+
+
+
+
+//Logging
+
+
+It will be useful in local testing, but once it's in the cloud, I don't know how anyone could see any output.
+maybe an array of last 50 errors, timestamped, that a /GetLog/somePassword request could retrieve?
+so instead of writing them to console, they're written to an array, and a culler does RemoveAt(0) if array length > 50
+
+
+suggestion: add logging bools to config ini for each function: Register, GetServers, Update, Remove and wrap any logging in an if check for the corresponding one enabled, default all false.  No need for fancy output if that removes a dependency.
+no one will be watching this :slight_smile:
+and we definitely don't want it trying to write a file someplace

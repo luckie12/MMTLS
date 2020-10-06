@@ -1,0 +1,29 @@
+{
+  "name": "mmt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoftwareGuy/multilistserver-node.git"
+  },
+  "author": "Luc Steijvers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoftwareGuy/multilistserver-node/issues"
+  },
+  "homepage": "https://github.com/SoftwareGuy/multilistserver-node#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "consola": "^2.11.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.1.1",
+    "ini": "^1.3.5",
+    "nodemon": "^2.0.2",
+    "pidusage": "^2.0.18"
+  }
+}
